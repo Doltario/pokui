@@ -1,5 +1,4 @@
 <div id="settings-container">
-  <input type="number" min="0" step="1" [(ngModel)]="settings.pageSize">
-
+  <input type="number" min="0" step="1" [(ngModel)]="settings.pageSize" (ngModelChange)="settingsChanged()">
   <button (click)="save()">Save</button>
 </div>

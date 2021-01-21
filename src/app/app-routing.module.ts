@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './components/home/home.component';
 import { SettingsComponent } from './components/settings/settings.component';
+import { SettingsAreSavedGuard } from './guards/settings-are-saved.guard';
 
 const routes: Routes = [
   {
@@ -12,6 +13,7 @@ const routes: Routes = [
   {
     path: 'settings',
     component: SettingsComponent,
+    canDeactivate: [SettingsAreSavedGuard],
   }
 ];
 
