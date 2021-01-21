@@ -1,1 +1,5 @@
-<p>settings works!</p>
+<div id="settings-container">
+  <input type="number" min="0" step="1" [(ngModel)]="settings.pageSize">
+
+  <button (click)="save()">Save</button>
+</div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PokemonsService } from 'src/app/services/pokemons/pokemons.service';
 import { RootObject as PokeApiPokemon } from 'src/app/models/pokeApiPokemon.type';
+import { SettingsService } from 'src/app/services/settings/settings.service';
 
 @Component({
   selector: 'pokui-home',
@@ -12,8 +13,9 @@ export class HomeComponent implements OnInit {
   pokemon: PokeApiPokemon;
   totalPokemons: number = 0;
   currentPage: number = 0;
+  pageSize: number = this.settingsService.getSettings().pageSize;
 
-  constructor(private pokemonsService: PokemonsService) { }
+  constructor(private pokemonsService: PokemonsService, private settingsService: SettingsService) { }
 
   ngOnInit(): void {
     this.pokemonsService.getPokemons().subscribe(({ results, count }) => {

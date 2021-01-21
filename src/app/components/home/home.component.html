@@ -3,7 +3,7 @@
     {{ totalPokemons }} entries in the pokedex
     <ul>
       <li
-        *ngFor="let pokemon of pokemons | paginate: { itemsPerPage: 20, totalItems: totalPokemons, currentPage: currentPage }"
+        *ngFor="let pokemon of pokemons | paginate: { itemsPerPage: pageSize, totalItems: totalPokemons, currentPage: currentPage }"
         (click)="showPokemonDetails(pokemon)">
         {{pokemon.name}}
       </li>
