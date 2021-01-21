@@ -11,6 +11,7 @@ export class HomeComponent implements OnInit {
   pokemons: Object[] = [];
   pokemon: PokeApiPokemon;
   totalPokemons: number = 0;
+  currentPage: number = 0;
 
   constructor(private pokemonsService: PokemonsService) { }
 
@@ -24,6 +25,13 @@ export class HomeComponent implements OnInit {
   showPokemonDetails(pokemon): void {
     this.pokemonsService.getPokemonFromUrl(pokemon.url).subscribe((pokemon) => {
       this.pokemon = pokemon;
+    })
+  }
+
+  changePage(page) {
+    this.pokemonsService.getPokemons(page).subscribe(({ results }) => {
+      this.pokemons = results;
+      this.currentPage = page;
     })
   }
 }

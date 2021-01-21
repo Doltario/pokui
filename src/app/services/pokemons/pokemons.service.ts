@@ -11,8 +11,11 @@ export class PokemonsService {
 
   constructor(private http: HttpClient) { }
 
-  getPokemons() {
-    return this.http.get<PokeApiPokemons>(`${environment.POKE_API_URL}/pokemon?limit=20&offset=0`);
+  getPokemons(page = 0) {
+    const limit = 20;
+    const offset = page ? (page - 1) * limit : 0;
+
+    return this.http.get<PokeApiPokemons>(`${environment.POKE_API_URL}/pokemon?limit=${limit}&offset=${offset}`);
   }
 
   getPokemonFromUrl(url) {

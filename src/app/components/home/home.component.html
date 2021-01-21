@@ -1,9 +1,15 @@
 <div id="home-container">
   <div class="list-container">
     {{ totalPokemons }} entries in the pokedex
-    <div *ngFor="let pokemon of pokemons" (click)="showPokemonDetails(pokemon)">
-      {{ pokemon.name }}
-    </div>
+    <ul>
+      <li
+        *ngFor="let pokemon of pokemons | paginate: { itemsPerPage: 20, totalItems: totalPokemons, currentPage: currentPage }"
+        (click)="showPokemonDetails(pokemon)">
+        {{pokemon.name}}
+      </li>
+    </ul>
+
+    <pagination-controls (pageChange)="changePage($event)"></pagination-controls>
   </div>
   <div class="details-container">
     Details:
