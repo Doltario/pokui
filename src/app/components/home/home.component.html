@@ -1,1 +1,14 @@
-<p>home works!</p>
+<div id="home-container">
+  <div class="list-container">
+    {{ totalPokemons }} entries in the pokedex
+    <div *ngFor="let pokemon of pokemons" (click)="showPokemonDetails(pokemon)">
+      {{ pokemon.name }}
+    </div>
+  </div>
+  <div class="details-container">
+    Details:
+    <div *ngIf="pokemon">
+      {{ pokemon.name }}
+    </div>
+  </div>
+</div>
