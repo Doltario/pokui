@@ -1,0 +1,11 @@
+@import "vars";
+
+#navbar-container {
+  position: fixed;
+  height: $desktop-nav-height;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $near-white;
+}
