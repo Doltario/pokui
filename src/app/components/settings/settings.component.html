@@ -1,4 +1,13 @@
 <div id="settings-container">
-  <input type="number" min="0" step="1" [(ngModel)]="settings.pageSize" (ngModelChange)="settingsChanged()">
-  <button (click)="save()">Save</button>
+  <div>
+    <input type="number" min="0" step="1" [(ngModel)]="settings.pageSize" (ngModelChange)="settingsChanged()">
+  </div>
+  <div>
+    <input type="checkbox" id="darkTheme" [(ngModel)]="settings.darkTheme" (ngModelChange)="settingsChanged()">
+    <label for="darkTheme">Dark Theme</label>
+  </div>
+  <div>
+    <button (click)="save()">Save</button>
+    <button *ngIf="unsaved" (click)="discard()">Discard</button>
+  </div>
 </div>

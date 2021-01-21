@@ -6,6 +6,7 @@
 /* NOTE: Every files in src/styles can be import with just its name. For example _vars.scss can be imported with @import "vars"  */
 @import "vars";
 @import "mixins";
+@import "theme";
 
 // Reset
 * {
@@ -21,16 +22,16 @@ body {
   height: 100%;
   width: 100%;
   font-family: "Open Sans", sans-serif;
-  color: $default-text-color;
+  color: var(--text-color);
 }
 
 html {
-  background-color: $lightest-grey;
   font-size: 62.5%;
   overflow-x: hidden;
 }
 
 body {
+  background-color: var(--primary-background);
   max-width: $site-container-width;
   margin: 0 auto;
   @include font-size(16, 16, 14);

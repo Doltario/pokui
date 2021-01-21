@@ -22,7 +22,7 @@
 @mixin default-button {
   & {
     appearance: none;
-    background: $near-white;
+    background: var(--secondary-background);
     border: none;
     @include font-size(11);
     display: inline-block;
@@ -67,11 +67,7 @@
 
 /* It will adapt font size according to the screen type dynamically. It can also be set manually.  */
 /* usage: @include font-size(mobilePx, tabletPx?, desktopPx?)  */
-@mixin font-size(
-  $pxValueXs,
-  $pxValueMd: $pxValueXs * 1.1,
-  $pxValueLg: $pxValueXs * 1.2
-) {
+@mixin font-size($pxValueXs, $pxValueMd: $pxValueXs * 1.1, $pxValueLg: $pxValueXs * 1.2) {
   @if ($pxValueXs < $minimumFontSize) {
     $pxValueXs: $pxValueLg;
   }
@@ -95,11 +91,7 @@
 
 /* Based on font-size(). It will adapt line-height according to the screen type dynamically. It can also be set manually.  */
 /* usage: @include line-height(mobilePx, tabletPx?, desktopPx?)  */
-@mixin line-height(
-  $pxValueXs,
-  $pxValueMd: $pxValueXs * 1.1,
-  $pxValueLg: $pxValueXs * 1.2
-) {
+@mixin line-height($pxValueXs, $pxValueMd: $pxValueXs * 1.1, $pxValueLg: $pxValueXs * 1.2) {
   @if ($pxValueXs < $minimumFontSize) {
     $pxValueXs: $pxValueLg;
   }

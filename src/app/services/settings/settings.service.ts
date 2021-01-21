@@ -11,9 +11,8 @@ export class SettingsService {
   }
 
   constructor() {
-    if (!this.getSettings()) {
-      this.setSettings(this.defaultSettings);
-    }
+    if (!this.getSettings()) this.setSettings(this.defaultSettings);
+    this.loadTheme();
   }
 
   getSettings() {
@@ -23,5 +22,13 @@ export class SettingsService {
 
   setSettings(settings: Settings) {
     localStorage.setItem('settings', JSON.stringify(settings))
+  }
+
+  loadTheme() {
+    if (this.getSettings().darkTheme) {
+      document.body.classList.add("dark-theme");
+    } else {
+      document.body.classList.remove("dark-theme");
+    }
   }
 }

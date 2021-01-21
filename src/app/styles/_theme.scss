@@ -1,0 +1,19 @@
+@import "colors";
+
+/* 
+  NOTE: To use variables from theme, it is required to use css var() synthax instead of the scss variables.
+  All themed colors are located in the _colors files in a $colors list.
+  This may not be the cleanest way.
+*/
+
+.light-theme {
+  @each $name, $color in $colors {
+    #{$name}: nth($color, 1);
+  }
+}
+
+.dark-theme {
+  @each $name, $color in $colors {
+    #{$name}: nth($color, 2);
+  }
+}

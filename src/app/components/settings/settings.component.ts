@@ -8,12 +8,17 @@ import { Settings } from 'src/app/models/settings.type';
   styleUrls: ['./settings.component.scss']
 })
 export class SettingsComponent implements OnInit {
-  settings: Settings = this.settingsService.getSettings();
+  settings: Settings;
   unsaved: boolean = false;
 
   constructor(private settingsService: SettingsService) { }
 
   ngOnInit(): void {
+    this.initSettings();
+  }
+
+  private initSettings() {
+    this.settings = this.settingsService.getSettings();
   }
 
   settingsChanged() {
@@ -22,6 +27,12 @@ export class SettingsComponent implements OnInit {
 
   save() {
     this.settingsService.setSettings(this.settings);
+    this.unsaved = false;
+    this.settingsService.loadTheme();
+  }
+
+  discard() {
+    this.initSettings();
     this.unsaved = false;
   }
 
