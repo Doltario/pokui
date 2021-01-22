@@ -3,7 +3,7 @@
     <fa-icon [icon]="faSpinner" class="loader-icon"></fa-icon>
   </div>
 
-  <div *ngIf="!loading" class="list-container p-2 pb-2">
+  <div *ngIf="!loading" class="list-container p-2">
     <ul class="list-content">
       <li
         *ngFor="let pokemon of pokemons | paginate: { itemsPerPage: pageSize, totalItems: totalPokemons, currentPage: currentPage }"
@@ -24,13 +24,33 @@
     </div>
   </div>
 
-  <div class="details-container">
-    Details:
-    <div *ngIf="pokemon">
-      Name {{ pokemon.name }}
-      Height {{ pokemon.height }}
-      Width {{ pokemon.weight }}
-      Abilities <span *ngFor="let ability of abilities">{{ability.name}}: {{ability.effect}} </span>
+  <div class="details-container p-2">
+    <div *ngIf="!pokemon && !loadingPokemon" class="no-item-selected-container">
+      Click on an item of the list to show details
+    </div>
+    <div *ngIf="loadingPokemon" class="loader-container">
+      <fa-icon [icon]="faSpinner" class="loader-icon"></fa-icon>
+    </div>
+    <div *ngIf="pokemon && !loadingPokemon" class="details-content">
+      <h2>
+        {{ pokemon.name | titlecase }}
+      </h2>
+      <div class="img-container">
+        <img src="{{pokemon.sprites.front_default}}" alt="{{ pokemon.name }} default front sprite">
+      </div>
+      <div class="py-2">
+        <span class="mr-1">
+          <fa-icon [icon]="faArrowsAltV"></fa-icon> {{ pokemon.height }} dc
+        </span>
+        <span class="ml-1">
+          <fa-icon [icon]="faWeightHanging"></fa-icon> {{ pokemon.weight }} hg
+        </span>
+      </div>
+      <div class="abilities-container">
+        <div *ngFor="let ability of abilities" class="abilities-item p-2 mb-2">
+          <strong>{{ ability.name }}</strong>: {{ ability.effect }}
+        </div>
+      </div>
     </div>
   </div>
 </div>

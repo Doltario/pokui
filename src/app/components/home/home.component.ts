@@ -3,7 +3,7 @@ import { PokemonsService } from 'src/app/services/pokemons/pokemons.service';
 import { RootObject as PokeApiPokemon } from 'src/app/models/pokeApiPokemon.type';
 import { Ability } from 'src/app/models/ability.type';
 import { SettingsService } from 'src/app/services/settings/settings.service';
-import { faHeart as plainFaHeart, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as plainFaHeart, faSpinner, faArrowsAltV, faWeightHanging } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
@@ -15,6 +15,8 @@ export class HomeComponent implements OnInit {
   faHeart = faHeart;
   plainFaHeart = plainFaHeart;
   faSpinner = faSpinner;
+  faArrowsAltV = faArrowsAltV;
+  faWeightHanging = faWeightHanging
 
   pokemons: Object[] = [];
   pokemon: PokeApiPokemon;
@@ -24,6 +26,7 @@ export class HomeComponent implements OnInit {
   pageSize: number = this.settingsService.getSettings().pageSize;
   favorites: string[] = this.pokemonsService.getFavorites();
   loading: boolean = false;
+  loadingPokemon: boolean = false;
 
   constructor(private pokemonsService: PokemonsService, private settingsService: SettingsService) { }
 
@@ -41,8 +44,10 @@ export class HomeComponent implements OnInit {
 
   showPokemonDetails(pokemon): void {
     this.abilities = [];
+    this.loadingPokemon = true;
     this.pokemonsService.getPokemonFromName(pokemon.name).subscribe(pokemon => {
       this.pokemon = pokemon;
+      this.loadingPokemon = false;
       pokemon.abilities.forEach(({ ability }) => {
         this.pokemonsService.getAbilityFromName(ability.name).subscribe(ability => {
           const { name } = ability;
