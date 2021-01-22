@@ -9,7 +9,9 @@ $darkest-grey: #0a0d11;
 
 $pokui-green: #06d6a0;
 $pokui-blue: #0063b2;
+$pokui-blue-dark: #013e6f;
 $pokui-red: #f96154;
+$pokui-red-dark: #c2564d;
 
 /* 
   NOTE: $colors list is meant to define theme colors. It is required to use css var() synthax instead of the scss variables.
@@ -34,5 +36,17 @@ $colors: (
   --text-color: (
     $near-black,
     $near-white,
+  ),
+  --alt-text-color: (
+    $near-white,
+    $near-black,
+  ),
+  --pokui-blue: (
+    $pokui-blue,
+    $pokui-blue-dark,
+  ),
+  --pokui-red: (
+    $pokui-red,
+    $pokui-red-dark,
   ),
 );

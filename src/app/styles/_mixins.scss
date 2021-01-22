@@ -1,4 +1,5 @@
 @import "vars";
+@import "colors";
 
 /* smartphone tablet and desktop mixins help to write media queries */
 @mixin smartphone {
@@ -19,18 +20,27 @@
   }
 }
 
-@mixin default-button {
+@mixin box-shadow($color: $near-black) {
+  box-shadow: 4px 5px 8px -8px $color;
+}
+
+@mixin default-button($background-color: var(--primary-background), $text-color: var(--text-color)) {
   & {
     appearance: none;
-    background: var(--secondary-background);
+    background: $background-color;
+    color: $text-color;
     border: none;
     @include font-size(11);
     display: inline-block;
     outline: none;
-    border-radius: $default-border-radius * 2;
-    padding: $spacing-basis * 2 $spacing-basis * 4;
-    margin-bottom: $spacing-basis; // NOTE: To let a bit space for the shadow
+    border-radius: $default-border-radius;
+    padding: $spacing-basis $spacing-basis * 2;
     cursor: pointer;
+    transition: filter 0.3s;
+  }
+
+  &:hover {
+    filter: grayscale(50%);
   }
 }
 

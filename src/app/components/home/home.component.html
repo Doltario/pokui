@@ -1,19 +1,29 @@
 <div id="home-container">
-  <div class="list-container">
-    {{ totalPokemons }} entries in the pokedex
+  <div *ngIf="loading" class="loader-container">
+    <fa-icon [icon]="faSpinner" class="loader-icon"></fa-icon>
+  </div>
+
+  <div *ngIf="!loading" class="list-container p-2 pb-4">
     <ul>
       <li
         *ngFor="let pokemon of pokemons | paginate: { itemsPerPage: pageSize, totalItems: totalPokemons, currentPage: currentPage }"
-        (click)="showPokemonDetails(pokemon)">
-        <div>{{pokemon.name}}</div>
-        <div *ngIf="isInFavorite(pokemon) === true" (click)="removeFromFavorites(pokemon, $event)">Remove from favorites
+        (click)="showPokemonDetails(pokemon)" class="mb-2 px-2 py-1">
+        <div>{{ pokemon.name | titlecase }}</div>
+        <div *ngIf="isInFavorite(pokemon) === true" (click)="removeFromFavorites(pokemon, $event)"
+          class="remove-favorite-button">
+          <fa-icon [icon]="plainFaHeart"></fa-icon>
         </div>
-        <div *ngIf="isInFavorite(pokemon) === false" (click)="addToFavorites(pokemon, $event)">Add to favorites</div>
+        <div *ngIf="isInFavorite(pokemon) === false" (click)="addToFavorites(pokemon, $event)"
+          class="add-favorite-button">
+          <fa-icon [icon]="faHeart"></fa-icon>
+        </div>
       </li>
     </ul>
-
-    <pagination-controls (pageChange)="changePage($event)"></pagination-controls>
+    <div class="pagination-container">
+      <pagination-controls (pageChange)="changePage($event)"></pagination-controls>
+    </div>
   </div>
+
   <div class="details-container">
     Details:
     <div *ngIf="pokemon">
