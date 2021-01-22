@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
   totalPokemons: number = 0;
   currentPage: number = 0;
   pageSize: number = this.settingsService.getSettings().pageSize;
+  favorites: string[] = this.pokemonsService.getFavorites();
 
   constructor(private pokemonsService: PokemonsService, private settingsService: SettingsService) { }
 
@@ -35,5 +36,21 @@ export class HomeComponent implements OnInit {
       this.pokemons = results;
       this.currentPage = page;
     })
+  }
+
+  addToFavorites(pokemon: PokeApiPokemon, $event): void {
+    this.pokemonsService.addToFavorites(pokemon.name);
+    this.favorites = this.pokemonsService.getFavorites();
+    $event.stopPropagation();
+  }
+
+  removeFromFavorites(pokemon: PokeApiPokemon, $event): void {
+    this.pokemonsService.removeFromFavorites(pokemon.name);
+    this.favorites = this.pokemonsService.getFavorites();
+    $event.stopPropagation();
+  }
+
+  isInFavorite(pokemon: PokeApiPokemon): boolean {
+    return this.favorites.includes(pokemon.name);
   }
 }

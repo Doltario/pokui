@@ -5,7 +5,10 @@
       <li
         *ngFor="let pokemon of pokemons | paginate: { itemsPerPage: pageSize, totalItems: totalPokemons, currentPage: currentPage }"
         (click)="showPokemonDetails(pokemon)">
-        {{pokemon.name}}
+        <div>{{pokemon.name}}</div>
+        <div *ngIf="isInFavorite(pokemon) === true" (click)="removeFromFavorites(pokemon, $event)">Remove from favorites
+        </div>
+        <div *ngIf="isInFavorite(pokemon) === false" (click)="addToFavorites(pokemon, $event)">Add to favorites</div>
       </li>
     </ul>
 
