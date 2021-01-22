@@ -5,6 +5,7 @@ import { Settings } from 'src/app/models/settings.type';
   providedIn: 'root'
 })
 export class SettingsService {
+  private readonly SETTINGS_KEY = 'settings';
   private defaultSettings: Settings = {
     darkTheme: false,
     pageSize: 20
@@ -16,12 +17,12 @@ export class SettingsService {
   }
 
   getSettings() {
-    const settings = localStorage.getItem('settings');
+    const settings = localStorage.getItem(this.SETTINGS_KEY);
     return JSON.parse(settings);
   }
 
   setSettings(settings: Settings) {
-    localStorage.setItem('settings', JSON.stringify(settings))
+    localStorage.setItem(this.SETTINGS_KEY, JSON.stringify(settings))
   }
 
   loadTheme() {
