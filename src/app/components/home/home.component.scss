@@ -35,6 +35,21 @@
     .list-content {
       overflow: scroll;
       height: 90%;
+
+      li {
+        background-color: var(--secondary-background);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: $default-border-radius;
+        cursor: pointer;
+        @include box-shadow();
+
+        .add-favorite-button,
+        .remove-favorite-button {
+          @include default-button(var(--pokui-blue), $near-white);
+        }
+      }
     }
 
     .pagination-container {
@@ -46,20 +61,5 @@
 
   .details-container {
     flex: 2;
-  }
-
-  li {
-    background-color: var(--secondary-background);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: $default-border-radius;
-    cursor: pointer;
-    @include box-shadow();
-
-    .add-favorite-button,
-    .remove-favorite-button {
-      @include default-button(var(--pokui-blue), $near-white);
-    }
   }
 }
