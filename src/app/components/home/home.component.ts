@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PokemonsService } from 'src/app/services/pokemons/pokemons.service';
 import { RootObject as PokeApiPokemon } from 'src/app/models/pokeApiPokemon.type';
+import { Ability } from 'src/app/models/ability.type';
 import { SettingsService } from 'src/app/services/settings/settings.service';
 import { faHeart as plainFaHeart, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
@@ -17,6 +18,7 @@ export class HomeComponent implements OnInit {
 
   pokemons: Object[] = [];
   pokemon: PokeApiPokemon;
+  abilities: Ability[] = [];
   totalPokemons: number = 0;
   currentPage: number = 0;
   pageSize: number = this.settingsService.getSettings().pageSize;
@@ -31,12 +33,27 @@ export class HomeComponent implements OnInit {
       this.pokemons = results;
       this.totalPokemons = count;
       this.loading = false;
+    }, (error) => {
+      this.loading = false;
+      console.error(error);
     })
   }
 
   showPokemonDetails(pokemon): void {
-    this.pokemonsService.getPokemonFromUrl(pokemon.url).subscribe((pokemon) => {
+    this.abilities = [];
+    this.pokemonsService.getPokemonFromName(pokemon.name).subscribe(pokemon => {
       this.pokemon = pokemon;
+      pokemon.abilities.forEach(({ ability }) => {
+        this.pokemonsService.getAbilityFromName(ability.name).subscribe(ability => {
+          const { name } = ability;
+          const effect = ability.effect_entries.filter(effect_entry => effect_entry.language.name === "en");
+          this.abilities.push({ name, effect: effect[0].effect });
+        }, (error) => {
+          console.error(error);
+        })
+      });
+    }, (error) => {
+      console.error(error);
     })
   }
 
@@ -44,6 +61,8 @@ export class HomeComponent implements OnInit {
     this.pokemonsService.getPokemons(page).subscribe(({ results }) => {
       this.pokemons = results;
       this.currentPage = page;
+    }, (error) => {
+      console.error(error);
     })
   }
 

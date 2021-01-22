@@ -27,7 +27,10 @@
   <div class="details-container">
     Details:
     <div *ngIf="pokemon">
-      {{ pokemon.name }}
+      Name {{ pokemon.name }}
+      Height {{ pokemon.height }}
+      Width {{ pokemon.weight }}
+      Abilities <span *ngFor="let ability of abilities">{{ability.name}}: {{ability.effect}} </span>
     </div>
   </div>
 </div>

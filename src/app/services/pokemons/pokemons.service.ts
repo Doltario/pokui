@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { RootObject as PokeApiPokemon } from 'src/app/models/pokeApiPokemon.type';
 import { RootObject as PokeApiPokemons } from 'src/app/models/pokeApiPokemons.type';
+import { RootObject as PokeApiAbility } from 'src/app/models/pokeApiAbility.type';
 import { SettingsService } from 'src/app/services/settings/settings.service';
 
 @Injectable({
@@ -24,8 +25,12 @@ export class PokemonsService {
     return this.http.get<PokeApiPokemons>(`${environment.POKE_API_URL}/pokemon?limit=${limit}&offset=${offset}`);
   }
 
-  getPokemonFromUrl(url: string): Observable<PokeApiPokemon> {
-    return this.http.get<PokeApiPokemon>(`${url}`);
+  getPokemonFromName(pokemonName: string): Observable<PokeApiPokemon> {
+    return this.http.get<PokeApiPokemon>(`${environment.POKE_API_URL}/pokemon/${pokemonName}`);
+  }
+
+  getAbilityFromName(abilityName: string): Observable<PokeApiAbility> {
+    return this.http.get<PokeApiAbility>(`${environment.POKE_API_URL}/ability/${abilityName}`);
   }
 
   getFavorites(): string[] {
