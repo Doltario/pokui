@@ -1,13 +1,16 @@
-<div id="settings-container">
-  <div>
-    <input type="number" min="0" step="1" [(ngModel)]="settings.pageSize" (ngModelChange)="settingsChanged()">
+<div id="settings-container" class="p-2">
+  <div class="pb-2">
+    <label for="page-size" class="mr-2">Page size:</label>
+    <input id="page-size" type="number" min="0" step="1" [(ngModel)]="settings.pageSize"
+      (ngModelChange)="settingsChanged()">
+  </div>
+  <div class="pb-2">
+    <input type="checkbox" id="dark-theme" class="mr-1" [(ngModel)]="settings.darkTheme"
+      (ngModelChange)="settingsChanged()">
+    <label for="dark-theme">Dark Theme</label>
   </div>
   <div>
-    <input type="checkbox" id="darkTheme" [(ngModel)]="settings.darkTheme" (ngModelChange)="settingsChanged()">
-    <label for="darkTheme">Dark Theme</label>
-  </div>
-  <div>
-    <button (click)="save()">Save</button>
-    <button *ngIf="unsaved" (click)="discard()">Discard</button>
+    <button (click)="save()" class="save-button mr-2">Save</button>
+    <button *ngIf="unsaved" (click)="discard()" class="discard-button">Discard</button>
   </div>
 </div>

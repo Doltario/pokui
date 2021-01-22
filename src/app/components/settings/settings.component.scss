@@ -1,0 +1,17 @@
+@import "mixins";
+
+#settings-container {
+  #page-size {
+    width: 50px;
+  }
+
+  .save-button {
+    @include default-button(var(--secondary-background));
+    @include box-shadow;
+  }
+
+  .discard-button {
+    @include default-button(var(--pokui-red));
+    @include box-shadow;
+  }
+}
