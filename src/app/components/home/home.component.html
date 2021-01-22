@@ -3,8 +3,8 @@
     <fa-icon [icon]="faSpinner" class="loader-icon"></fa-icon>
   </div>
 
-  <div *ngIf="!loading" class="list-container p-2 pb-4">
-    <ul>
+  <div *ngIf="!loading" class="list-container p-2 pb-2">
+    <ul class="list-content">
       <li
         *ngFor="let pokemon of pokemons | paginate: { itemsPerPage: pageSize, totalItems: totalPokemons, currentPage: currentPage }"
         (click)="showPokemonDetails(pokemon)" class="mb-2 px-2 py-1">
@@ -19,7 +19,7 @@
         </div>
       </li>
     </ul>
-    <div class="pagination-container">
+    <div class="pagination-container py-3">
       <pagination-controls (pageChange)="changePage($event)"></pagination-controls>
     </div>
   </div>

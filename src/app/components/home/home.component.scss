@@ -32,7 +32,13 @@
     flex: 1;
     height: 100%;
 
+    .list-content {
+      overflow: scroll;
+      height: 90%;
+    }
+
     .pagination-container {
+      height: 10%;
       display: flex;
       justify-content: center;
     }
