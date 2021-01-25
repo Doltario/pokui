@@ -22,6 +22,8 @@ export class PokemonsService {
     const limit = this.settingsService.getSettings().pageSize;
     const offset = page ? (page - 1) * limit : 0;
 
+    // FIXME: Add abilities in the response of this method. So that method this.getFavorites should be removed. Doing data merge in controller is bad.
+
     return this.http.get<PokeApiPokemons>(`${environment.POKE_API_URL}/pokemon?limit=${limit}&offset=${offset}`);
   }
 

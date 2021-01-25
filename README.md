@@ -25,3 +25,7 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## NOTES
+
+pokemonsService.getPokemons needs a rework. Doing a requests merge in controller to get pokemons and their abilities is a bad thing and totally un-rxJS. Nevertheless I couldn't not find out how to do it in time. Here's a WIP on this : [Stackblitz of on pokemons service](https://stackblitz.com/edit/angular-ivy-zmhnhr?file=src%2Fapp%2Fpokemon.service.ts)
