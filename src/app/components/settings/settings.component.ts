@@ -17,26 +17,26 @@ export class SettingsComponent implements OnInit {
     this.initSettings();
   }
 
-  private initSettings() {
+  private initSettings(): void {
     this.settings = this.settingsService.getSettings();
   }
 
-  settingsChanged() {
+  settingsChanged(): void {
     if (!this.unsaved) this.unsaved = true;
   }
 
-  save() {
+  save(): void {
     this.settingsService.setSettings(this.settings);
     this.unsaved = false;
     this.settingsService.loadTheme();
   }
 
-  discard() {
+  discard(): void {
     this.initSettings();
     this.unsaved = false;
   }
 
-  canDeactivate() {
+  canDeactivate(): boolean {
     if (!this.unsaved) return true;
     return confirm('Do you want to leave without saving ?');
   }

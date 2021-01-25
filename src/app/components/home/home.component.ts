@@ -42,7 +42,7 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  showPokemonDetails(pokemon): void {
+  showPokemonDetails(pokemon: PokeApiPokemon): void {
     this.abilities = [];
     this.loadingPokemon = true;
     this.pokemonsService.getPokemonFromName(pokemon.name).subscribe(pokemon => {
@@ -62,7 +62,7 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  changePage(page): void {
+  changePage(page: number): void {
     this.pokemonsService.getPokemons(page).subscribe(({ results }) => {
       this.pokemons = results;
       this.currentPage = page;
